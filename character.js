@@ -1,4 +1,4 @@
-export { Character, Fighter, Paladin, Monk, Berzerker, Assassin };
+export { Character, Fighter, Paladin, Monk, Berzerker, Assassin, Wizard };
 
 class Character {
   constructor(name, hp, dmg, mana) {
@@ -153,3 +153,19 @@ class Assassin extends Character {
   }
 }
 
+class Wizard extends Character {
+  constructor(name) {
+      super(name, 10, 2, 200); 
+      this.spellCost = 25;
+  }
+
+  fireball(target) {
+    if (this.mana >= 25) {
+        console.log(`${this.name} lance une boule de feu sur ${target.name}!`);
+        target.takeDamage(7); 
+        this.mana -= 25; 
+    } else {
+        console.log(`${this.name} n'a pas assez de mana pour lancer une boule de feu!`);
+    }
+  }
+}

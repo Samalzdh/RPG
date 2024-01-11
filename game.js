@@ -1,5 +1,5 @@
 
-import { Character, Fighter, Paladin, Monk, Berzerker, Assassin } from './character.js';
+import { Character, Fighter, Paladin, Monk, Berzerker, Assassin, Wizard } from './character.js';
 
 class Game {
   constructor(players) {
@@ -79,6 +79,9 @@ class Game {
       case "Assassin":
         player.shadowHit(target);
         break;
+      case "Wizard":
+        player.fireball(target);
+        break;
     }
   }
   
@@ -118,6 +121,7 @@ class Game {
     console.log(alex);
     console.log(sam);
     console.log(louis);
+    console.log(greg);
   }
 
   checkEndGame() {
@@ -132,14 +136,28 @@ class Game {
   }
 }
 
+document.getElementById('attackButton').addEventListener('click', function() {
+  game.playerTurn('attack');
+});
+
+document.getElementById('specialAttackButton').addEventListener('click', function() {
+  game.playerTurn('specialAttack');
+});
+
+document.getElementById('statsButton').addEventListener('click', function() {
+  game.watchStats();
+});
+
+
 
 let axel = new Fighter("Axel le beau");
 let lalaina = new Paladin("Lalaina la belle");
 let alex = new Monk("Alex la chipo");
 let sam = new Berzerker("Sam la merguez");
 let louis = new Assassin("Louis la chips");
+let greg = new Wizard("Greg le pieton");
 
-let game = new Game([axel, lalaina, alex, louis, sam]);
+let game = new Game([axel, lalaina, alex, louis, sam, greg]);
 
 game.startGame();
 
